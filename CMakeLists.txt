@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(tr1_hardware_interface)
+project(kuuve_hw_interface)
 
 add_compile_options(-std=c++11)
 
@@ -15,7 +15,6 @@ find_package(catkin REQUIRED COMPONENTS
   urdf
   control_toolbox
   joint_limits_interface
-	tr1cpp
 )
 
 catkin_package(
@@ -32,10 +31,10 @@ catkin_package(
     urdf
     control_toolbox
     joint_limits_interface
-		tr1cpp
+	kuuvef1cpp
   LIBRARIES 
-    tr1_hardware_interface
-		tr1cpp
+    kuuve_hw_interface
+	kuuvef1cpp
 )
 
 include_directories(
@@ -47,15 +46,16 @@ install(DIRECTORY include/${PROJECT_NAME}/
   FILES_MATCHING PATTERN "*.h"
   PATTERN ".svn" EXCLUDE)
 
-add_library(tr1_hardware_interface src/tr1_hardware_interface.cpp)
-add_dependencies(tr1_hardware_interface tr1cpp)
-target_link_libraries(tr1_hardware_interface
-	${tr1cpp_LIBRARIES}
+# FIXME: rename cpp files
+add_library(kuuve_hw_interface src/tr1_hardware_interface.cpp)
+add_dependencies(kuuve_hw_interface kuuvef1cpp)
+target_link_libraries(kuuve_hw_interface
+	${kuuvef1cpp_LIBRARIES}
 	${catkin_LIBRARIES})
 
-add_executable(tr1_hardware_interface_node src/tr1_hardware_interface_node.cpp)
-add_dependencies(tr1_hardware_interface_node tr1_hardware_interface)
+add_executable(kuuve_hw_interface_node src/tr1_hardware_interface_node.cpp)
+add_dependencies(kuuve_hw_interface_node kuuve_hw_interface)
 
-target_link_libraries(tr1_hardware_interface_node
-	tr1_hardware_interface
+target_link_libraries(kuuve_hw_interface_node
+	kuuve_hw_interface
 	${catkin_LIBRARIES})
