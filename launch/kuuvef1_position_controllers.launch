@@ -1,0 +1,22 @@
+<launch>
+
+  <!-- GDB functionality -->
+  <arg name="debug" default="false" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+  <arg name="robot_name" default="kuuvef1"/>
+
+  <rosparam file="$(find kuuvef1_hw_interface)/config/hardware.yaml" command="load"/>
+  <rosparam file="$(find kuuvef1_hw_interface)/config/kuuvef1_controllers.yaml" command="load"/>
+  <rosparam file="$(find kuuvef1_hw_interface)/config/joint_limits.yaml" command="load"/>
+  <!--rosparam file="$(find kuuvef1_hw_interface)/config/joint_offsets.yaml" command="load"/-->
+	<!--param name="robot_description" command="cat $(find kuuvef1_description)/urdf/kuuvef1.urdf" /-->
+
+  <node name="kuuvef1_hw_interface" pkg="kuuvef1_hw_interface" type="kuuvef1_hw_interface_node" output="screen" launch-prefix="$(arg launch_prefix)"/>
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/"
+		args="
+			/kuuvef1/controller/joint_state_controller
+			/kuuvef1/controller/steer_drive_controller
+		"/>
+
+</launch>

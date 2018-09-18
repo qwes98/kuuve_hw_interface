@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(kuuve_hw_interface)
+project(kuuvef1_hw_interface)
 
 add_compile_options(-std=c++11)
 
@@ -31,10 +31,11 @@ catkin_package(
     urdf
     control_toolbox
     joint_limits_interface
-	kuuvef1cpp
+    kuuvef1cpp
+    steer_drive_controller
   LIBRARIES 
-    kuuve_hw_interface
-	kuuvef1cpp
+    kuuvef1_hw_interface
+    kuuvef1cpp
 )
 
 include_directories(
@@ -47,15 +48,15 @@ install(DIRECTORY include/${PROJECT_NAME}/
   PATTERN ".svn" EXCLUDE)
 
 # FIXME: rename cpp files
-add_library(kuuve_hw_interface src/tr1_hardware_interface.cpp)
-add_dependencies(kuuve_hw_interface kuuvef1cpp)
-target_link_libraries(kuuve_hw_interface
+add_library(kuuvef1_hw_interface src/tr1_hardware_interface.cpp)
+add_dependencies(kuuvef1_hw_interface kuuvef1cpp)
+target_link_libraries(kuuvef1_hw_interface
 	${kuuvef1cpp_LIBRARIES}
 	${catkin_LIBRARIES})
 
-add_executable(kuuve_hw_interface_node src/tr1_hardware_interface_node.cpp)
-add_dependencies(kuuve_hw_interface_node kuuve_hw_interface)
+add_executable(kuuvef1_hw_interface_node src/tr1_hardware_interface_node.cpp)
+add_dependencies(kuuvef1_hw_interface_node kuuvef1_hw_interface)
 
-target_link_libraries(kuuve_hw_interface_node
-	kuuve_hw_interface
+target_link_libraries(kuuvef1_hw_interface_node
+	kuuvef1_hw_interface
 	${catkin_LIBRARIES})

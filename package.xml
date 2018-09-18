@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>kuuve_hw_interface</name>
+  <name>kuuvef1_hw_interface</name>
   <version>0.0.1</version>
   <description>Provides the hardware definition and interfaces for f1tenth rc car</description>
 
