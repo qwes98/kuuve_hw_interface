@@ -1,0 +1,5 @@
+kuuvef1:
+  hardware_interface:
+     loop_hz: 10 # hz
+     joints:
+       - steer_drive_controller   # from kuuvef1_controllers.yaml
