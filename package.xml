@@ -4,7 +4,7 @@
   <version>0.0.1</version>
   <description>Provides the hardware definition and interfaces for f1tenth rc car</description>
 
-  <maintainer email=""></maintainer>
+  <maintainer email="qwes8873@gmail.com">jiwon</maintainer>
 
   <license>MIT</license>
 
@@ -26,6 +26,7 @@
   <build_depend>control_toolbox</build_depend>
   <build_depend>joint_limits_interface</build_depend>
   <build_depend>serial</build_depend>
+  <build_depend>steer_drive_controller</build_depend>
   <!-- <build_depend>kuuvef1cpp</build_depend> -->
 
   <run_depend>hardware_interface</run_depend>
@@ -42,6 +43,7 @@
   <run_depend>control_toolbox</run_depend>
   <run_depend>joint_limits_interface</run_depend>
   <run_depend>serial</run_depend>
+  <run_depend>steer_drive_controller</run_depend>
 	<!-- <run_depend>kuuvef1cpp</run_depend> -->
 
 </package>

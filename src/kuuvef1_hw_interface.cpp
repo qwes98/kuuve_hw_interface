@@ -4,6 +4,8 @@
 #include <joint_limits_interface/joint_limits.h>
 #include <joint_limits_interface/joint_limits_urdf.h>
 #include <joint_limits_interface/joint_limits_rosparam.h>
+#include <serial/serial.h>
+#include <string>
 //#include <kuuvef1cpp/kuuvef1.h>
 //#include <kuuvef1cpp/joint.h>
 
@@ -12,6 +14,7 @@ using joint_limits_interface::JointLimits;
 using joint_limits_interface::SoftJointLimits;
 using joint_limits_interface::PositionJointSoftLimitsHandle;
 using joint_limits_interface::PositionJointSoftLimitsInterface;
+using namespace std;
 
 namespace kuuvef1_hw_interface
 {
@@ -48,14 +51,9 @@ namespace kuuvef1_hw_interface
         catch (serial::IOException& e)
         {
             ROS_ERROR_STREAM("Unable to open port ");
-            return -1;
+            return;
         }
 
-		if(ser_.isOpen()){
-			ROS_INFO_STREAM("Serial Port initialized");
-		}else{
-			return -1;
-		}
 	}
 
 	void Kuuvef1HardwareInterface::init()

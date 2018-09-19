@@ -23,7 +23,7 @@ namespace kuuvef1_hw_interface
         string raw_str = ser_.readline(ser_.available());
         stringstream trans(raw_str);
 
-        const char delim = ",";
+        const char delim = ',';
         vector<string> vec;
         tokenize(raw_str, delim, vec);
 
@@ -35,7 +35,7 @@ namespace kuuvef1_hw_interface
     void Kuuvef1Motor::actuate(double steer, double drive)
     {
         string packet = to_string(int(steer)) + "," + to_string(int(drive));
-        ser.write(packet);
+        ser_.write(packet);
     }
 
     void Kuuvef1Motor::init(string port, int baudrate)
@@ -45,5 +45,6 @@ namespace kuuvef1_hw_interface
         serial::Timeout to = serial::Timeout::simpleTimeout(1000);
         ser_.setTimeout(to);
         ser_.open();
+
     }
 }

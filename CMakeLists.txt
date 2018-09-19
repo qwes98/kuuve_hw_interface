@@ -49,10 +49,11 @@ install(DIRECTORY include/${PROJECT_NAME}/
   FILES_MATCHING PATTERN "*.h"
   PATTERN ".svn" EXCLUDE)
 
-# FIXME: rename cpp files
 add_library(kuuvef1_hw_interface src/kuuvef1_hw_interface.cpp)
+add_library(kuuvef1_motor src/kuuvef1_motor.cpp)
 #add_dependencies(kuuvef1_hw_interface kuuvef1cpp)
 target_link_libraries(kuuvef1_hw_interface
+	kuuvef1_motor
 #	${kuuvef1cpp_LIBRARIES}
 	${catkin_LIBRARIES})
 
@@ -60,5 +61,6 @@ add_executable(kuuvef1_hw_interface_node src/kuuvef1_hw_interface_node.cpp)
 add_dependencies(kuuvef1_hw_interface_node kuuvef1_hw_interface)
 
 target_link_libraries(kuuvef1_hw_interface_node
+	kuuvef1_motor
 	kuuvef1_hw_interface
 	${catkin_LIBRARIES})

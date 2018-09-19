@@ -2,6 +2,7 @@
 #define KUUVEF1_MOTOR_H
 
 #include <string>
+#include <serial/serial.h>
 
 namespace kuuvef1_hw_interface
 {
