@@ -9,7 +9,7 @@ namespace kuuvef1_hw_interface
     class Kuuvef1Motor
     {
         public:
-            Kuuvef1Motor(std::string steer_name = "steer", std::string drive_name = "drive")
+            Kuuvef1Motor(std::string steer_name = "front_steer_joint", std::string drive_name = "rear_wheel_joint")
                 : steer_name_(steer_name), drive_name_(drive_name)
             {}
 

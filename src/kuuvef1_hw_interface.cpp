@@ -74,7 +74,7 @@ namespace kuuvef1_hw_interface
 		// Resize vectors
 		joint_position_.resize(num_joints_);
 		joint_velocity_.resize(num_joints_);
-		//joint_effort_.resize(num_joints_);
+		joint_effort_.resize(num_joints_);
 		//joint_position_command_.resize(num_joints_);
 		//joint_velocity_command_.resize(num_joints_);
 		//joint_effort_command_.resize(num_joints_);
@@ -92,6 +92,7 @@ namespace kuuvef1_hw_interface
 			//kuuvef1.setJoint(joint);
 
 		  // Create joint state interface
+			ROS_INFO("good");
 			JointStateHandle steerStateHandle(kuuvef1_motor_.getSteerName(), &joint_position_[0], &joint_velocity_[0], &joint_effort_[0]);
 			joint_state_interface_.registerHandle(steerStateHandle);
 

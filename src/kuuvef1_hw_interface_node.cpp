@@ -2,7 +2,7 @@
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "tr1_hardware_interface");
+  ros::init(argc, argv, "kuuvef1_hw_interface");
   ros::NodeHandle nh;
 
   // NOTE: We run the ROS loop in a separate thread as external calls such

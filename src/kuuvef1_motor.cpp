@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -36,6 +37,7 @@ namespace kuuvef1_hw_interface
     {
         string packet = to_string(int(steer)) + "," + to_string(int(drive));
         ser_.write(packet);
+		cout << "write: " << packet << endl;
     }
 
     void Kuuvef1Motor::init(string port, int baudrate)
