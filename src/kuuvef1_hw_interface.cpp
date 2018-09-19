@@ -33,6 +33,31 @@ namespace kuuvef1_hw_interface
 	{
 	}
 
+	void Kuuvef1HardwareInterface::serialInit()
+	{
+		string port;
+		int baudrate;
+
+		nh_.getParam("/kuuvef1/serial/port", port);
+		nh_.getParam("/kuuvef1/serial/baudrate", baudrate);
+
+		try
+		{
+			kuuvef1_motor_.init(port, baudrate);
+        }
+        catch (serial::IOException& e)
+        {
+            ROS_ERROR_STREAM("Unable to open port ");
+            return -1;
+        }
+
+		if(ser_.isOpen()){
+			ROS_INFO_STREAM("Serial Port initialized");
+		}else{
+			return -1;
+		}
+	}
+
 	void Kuuvef1HardwareInterface::init()
 	{
 		//joint_mode_ = 3; // ONLY EFFORT FOR NOW
@@ -45,6 +70,8 @@ namespace kuuvef1_hw_interface
 		}
 		num_joints_ = joint_names_.size();
 		*/
+
+		serialInit();
 
 		// Resize vectors
 		joint_position_.resize(num_joints_);
@@ -147,12 +174,11 @@ namespace kuuvef1_hw_interface
 		}
 		*/
 
-		joint_position_[0] = kuuvef1_motor_.readSteerPos();
+		kuuvef1_motor_.readSteerAndDrive(joint_position_[0], joint_velocity_[1]);
 		std::ostringstream steerPositionStr;
 		steerPositionStr << joint_position_[0];
 		_logInfo += "  " + kuuvef1_motor_.getSteerName() + ": " + steerPositionStr.str() + "\n";
 
-		joint_velocity_[1] = kuuvef1_motor_.readDriveVel();
 		std::ostringstream driveVelocityStr;
 		driveVelocityStr << joint_velocity_[1];
 		_logInfo += "  " + kuuvef1_motor_.getDriveName() + ": " + driveVelocityStr.str() + "\n";

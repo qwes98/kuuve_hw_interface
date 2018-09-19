@@ -15,14 +15,18 @@ namespace kuuvef1_hw_interface
             std::string getSteerName() { return steer_name_; }
             std::string getDriveName() { return drive_name_; }
 
-            // TODO: read current value from arduino
-            int readSteerPos();
-            int readDriveVel();
+            void init(std::string port, int baudrate);
+
+            void readSteerAndDrive(double& steer, double& drive);
 
             // TODO: just make message and send it to arduino (this is based on that steer_drive_controller use control mechanism(e.g. pid control))
-            void actuate(int steer, int drive);
+            void actuate(double steer, double drive);
 
         private:
+            void tokenize(std::string const& str, const char delim, std::vector<std::string>& out);
+
+            serial::Serial ser_;
+
             std::string steer_name_;
             std::string drive_name_;
 

@@ -6,9 +6,10 @@
   <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
   <arg name="robot_name" default="kuuvef1"/>
 
-  <rosparam file="$(find kuuvef1_hw_interface)/config/hardware.yaml" command="load"/>
+  <rosparam file="$(find kuuvef1_hw_interface)/config/kuuvef1_hardware.yaml" command="load"/>
   <rosparam file="$(find kuuvef1_hw_interface)/config/kuuvef1_controllers.yaml" command="load"/>
-  <rosparam file="$(find kuuvef1_hw_interface)/config/joint_limits.yaml" command="load"/>
+  <rosparam file="$(find kuuvef1_hw_interface)/config/kuuvef1_motor.yaml" command="load"/>
+  <!--rosparam file="$(find kuuvef1_hw_interface)/config/joint_limits.yaml" command="load"/-->
   <!--rosparam file="$(find kuuvef1_hw_interface)/config/joint_offsets.yaml" command="load"/-->
 	<!--param name="robot_description" command="cat $(find kuuvef1_description)/urdf/kuuvef1.urdf" /-->
 

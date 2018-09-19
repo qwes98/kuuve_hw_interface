@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   urdf
   control_toolbox
   joint_limits_interface
+  serial
 )
 
 catkin_package(
@@ -33,6 +34,7 @@ catkin_package(
     joint_limits_interface
     #kuuvef1cpp
     steer_drive_controller
+    serial
   LIBRARIES 
     kuuvef1_hw_interface
     #kuuvef1cpp

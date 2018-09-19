@@ -40,6 +40,7 @@ namespace kuuvef1_hw_interface
 			void write(ros::Duration elapsed_time);
 
 		protected:
+			void serialInit();
 			//kuuvef1cpp::Kuuvef1 kuuvef1;
 
 			// FIXME: have to use kuuvef1_hw_interface:: namespace??
